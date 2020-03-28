@@ -101,7 +101,7 @@ NameAndSaying ParseNameAndSayingJSONFile(string jsonFileName)
 int TestProc()
 {
 
-	NameAndSaying result = ParseNameAndSayingJSONFile("MyJSONFile.json"); 
+	NameAndSaying result = ParseNameAndSayingJSONFile("testInputs/MyJSONFile.json"); 
 	BOOST_ASSERT(result.valid == 1); 
 	BOOST_ASSERT(result.FullName == string("Roger Pease")); 
 	BOOST_ASSERT(result.sentence == string("Hi There World")); 
