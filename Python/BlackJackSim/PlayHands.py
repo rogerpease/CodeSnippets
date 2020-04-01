@@ -40,7 +40,7 @@ def PlayShoe(strategyName,shoeSizeDecks = 4):
       dealerCards = [ cardshoe.DealCard()] 
       dealerCards.append(cardshoe.DealCard())
       action = "hit" 
-      context = InitalizeContext() 
+      context = Strategy.InitializeContext() 
       while action != "stand":
          action = Strategy.PlayerAction(playerCards,dealerCards,context)
          if action == "hit":
@@ -48,7 +48,7 @@ def PlayShoe(strategyName,shoeSizeDecks = 4):
   
       action = "hit"
       while action != "stand":
-         action = Strategy.DealerAction(dealerCards)
+         action = Strategy.DealerAction(playerCards,dealerCards,context)
          if action == "hit":
            dealerCards.append(cardshoe.DealCard()) 
   
@@ -62,10 +62,16 @@ def PlayShoe(strategyName,shoeSizeDecks = 4):
 # 
 #
 
+
+if len(sys.argv) < 2:
+   usage("No Strategy Module supplied")
+
 if sys.argv[1] == "":
    usage()
    sys.exit(0)
 
+
+  
 moduleName = sys.argv[1]
 if not os.path.exists(moduleName+".py"): 
    usage("Module " + moduleName + " not found ")
